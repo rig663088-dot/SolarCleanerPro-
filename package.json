@@ -1,0 +1,38 @@
+{
+  "name": "solarcleanerpro",
+  "productName": "SolarCleanerPro",
+  "version": "2.7.0",
+  "description": "Simulación SolarCleanerPro v2 · conexiones y limpieza",
+  "author": "Leon Mena, Ángel Joel; Gallegos Valencia, Cristian Augusto",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux",
+    "cap:sync": "cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
+    "electron": "^31.3.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.solarcleanerpro.app",
+    "productName": "SolarCleanerPro",
+    "files": ["electron/**/*", "www/**/*", "package.json"],
+    "directories": { "output": "dist", "buildResources": "build" },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true },
+    "linux": { "icon": "build/icon.png", "target": ["AppImage"], "category": "Utility" }
+  }
+}
